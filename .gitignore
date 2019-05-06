@@ -1,3 +1,6 @@
+# output directory
+target
+
 # Compiled class file
 *.class
 
@@ -26,3 +29,8 @@ hs_err_pid*
 .idea
 *.iml
 *.kotlin_module
+
+# eclipse
+.settings
+.project
+.classpath

@@ -8,18 +8,17 @@ import java.nio.charset.StandardCharsets;
 public class FileGenerator {
 
     private LineGenerator lineGenerator;
-    private int lineCount;
 
-    public FileGenerator(LineGenerator lineGenerator, int lineCount) {
+    public FileGenerator(LineGenerator lineGenerator) {
         this.lineGenerator = lineGenerator;
-        this.lineCount = lineCount;
     }
 
-    public void generateFile(String filename) throws IOException {
+    public void generateFile(String filename, int lineCount) throws IOException {
+        new File(filename).getParentFile().mkdirs();
         int count = lineCount;
-        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(filename), StandardCharsets.UTF_8))) {
-            while (count-- != 0 ) {
+        try (Writer writer = new BufferedWriter(
+                new OutputStreamWriter(new FileOutputStream(filename), StandardCharsets.UTF_8))) {
+            while (count-- != 0) {
                 writer.write(lineGenerator.generateLine().toCharArray());
                 writer.write(System.lineSeparator().toCharArray());
             }
